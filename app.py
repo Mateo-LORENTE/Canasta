@@ -354,15 +354,9 @@ elif page == "📈 Statistiques":
  
                     if mode_stats:
                         df_mode = pd.DataFrame(mode_stats)
-                        col1, col2 = st.columns([1.5, 2])
-                        col1.dataframe(df_mode, use_container_width=True, hide_index=True)
-                        fig_mode = px.bar(df_mode, x="Mode", y="Win rate (%)",
-                                          color="Win rate (%)", color_continuous_scale="Blues",
-                                          range_y=[0, 100])
-                        fig_mode.update_layout(coloraxis_showscale=False,
-                                               plot_bgcolor="rgba(0,0,0,0)",
-                                               paper_bgcolor="rgba(0,0,0,0)")
-                        col2.plotly_chart(fig_mode, use_container_width=True)
+                        st.dataframe(df_mode, use_container_width=True, hide_index=True)
+  
+                        
                     else:
                         st.info("Pas assez de données par mode.")
  
