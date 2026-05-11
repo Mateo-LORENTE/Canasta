@@ -308,13 +308,147 @@ elif page == "📈 Statistiques":
             else:
                 st.info("Jouez des matchs pour voir l'évolution des Elos.")
 
-            # Win rate camembert
-            st.markdown("### Win rate comparé")
-            df_pie = df_stats[df_stats["Victoires"] > 0]
-            if not df_pie.empty:
-                fig2 = px.pie(df_pie, names="Joueur", values="Victoires", title="Répartition des victoires")
-                fig2.update_layout(paper_bgcolor="rgba(0,0,0,0)")
-                st.plotly_chart(fig2, use_container_width=True)
+
+           # ── Analyse individuelle ────────────────────────────────────────
+            st.markdown("---")
+            st.markdown("### 🔍 Analyse individuelle")
+ 
+            player_sel = st.selectbox("Choisir un joueur", sorted(players.keys()))
+ 
+            if player_sel:
+                p = player_sel
+ 
+                # Détecter le mode de chaque match
+                def get_mode(m):
+                    total = len(m["winners"]) + len(m["losers"]) + len(m.get("neutrals", []))
+                    w, l, n = len(m["winners"]), len(m["losers"]), len(m.get("neutrals", []))
+                    if n > 0:
+                        return "1v1v1" if total == 3 else "FFA"
+                    if w == 1 and l == 1:
+                        return "1v1"
+                    if w == 2 and l == 2:
+                        return "2v2"
+                    return "Autre"
+ 
+                # Matchs du joueur
+                p_matchs = [m for m in history if p in m["winners"] + m["losers"] + m.get("neutrals", [])]
+ 
+                if not p_matchs:
+                    st.info(f"{p} n'a pas encore joué de match.")
+                else:
+                    # ── Win rate par mode
+                    st.markdown(f"#### Win rate de **{p}** par mode de jeu")
+                    modes = ["1v1", "2v2", "1v1v1", "Autre"]
+                    mode_stats = []
+                    for mode in modes:
+                        m_mode = [m for m in p_matchs if get_mode(m) == mode]
+                        played_m = len(m_mode)
+                        wins_m   = sum(1 for m in m_mode if p in m["winners"])
+                        if played_m > 0:
+                            mode_stats.append({
+                                "Mode": mode,
+                                "Matchs": played_m,
+                                "Victoires": wins_m,
+                                "Win rate (%)": round(wins_m / played_m * 100),
+                            })
+ 
+                    if mode_stats:
+                        df_mode = pd.DataFrame(mode_stats)
+                        col1, col2 = st.columns([1.5, 2])
+                        col1.dataframe(df_mode, use_container_width=True, hide_index=True)
+                        fig_mode = px.bar(df_mode, x="Mode", y="Win rate (%)",
+                                          color="Win rate (%)", color_continuous_scale="Blues",
+                                          range_y=[0, 100])
+                        fig_mode.update_layout(coloraxis_showscale=False,
+                                               plot_bgcolor="rgba(0,0,0,0)",
+                                               paper_bgcolor="rgba(0,0,0,0)")
+                        col2.plotly_chart(fig_mode, use_container_width=True)
+                    else:
+                        st.info("Pas assez de données par mode.")
+ 
+                    st.markdown("---")
+ 
+                    # ── Partenaire préféré (2v2)
+                    st.markdown(f"#### 🤝 Partenaire préféré")
+                    matchs_2v2 = [m for m in p_matchs if get_mode(m) == "2v2"]
+                    partner_count = {}
+                    for m in matchs_2v2:
+                        team = m["winners"] if p in m["winners"] else m["losers"]
+                        for mate in team:
+                            if mate != p:
+                                partner_count[mate] = partner_count.get(mate, 0) + 1
+ 
+                    if partner_count:
+                        best_partner = max(partner_count, key=partner_count.get)
+                        cols = st.columns(len(partner_count))
+                        for i, (mate, count) in enumerate(sorted(partner_count.items(), key=lambda x: -x[1])):
+                            cols[i].metric(mate, f"{count} fois", "⭐" if mate == best_partner else "")
+                    else:
+                        st.info("Pas de matchs 2v2 enregistrés.")
+ 
+                    st.markdown("---")
+ 
+                    # ── Nemesis & Elo farming (tous modes)
+                    st.markdown(f"#### ⚔️ Nemesis & Elo farming")
+ 
+                    # Pour chaque adversaire : nb confrontations, nb défaites de p
+                    face_to_face = {}
+                    for m in p_matchs:
+                        if p in m["winners"]:
+                            opponents = m["losers"] + m.get("neutrals", [])
+                            result = "win"
+                        elif p in m["losers"]:
+                            opponents = m["winners"] + m.get("neutrals", [])
+                            result = "loss"
+                        else:  # neutre
+                            opponents = m["winners"] + m["losers"]
+                            result = "neutral"
+ 
+                        for opp in opponents:
+                            if opp == p:
+                                continue
+                            if opp not in face_to_face:
+                                face_to_face[opp] = {"played": 0, "losses": 0, "wins": 0}
+                            face_to_face[opp]["played"] += 1
+                            if result == "loss":
+                                face_to_face[opp]["losses"] += 1
+                            elif result == "win":
+                                face_to_face[opp]["wins"] += 1
+ 
+                    if face_to_face:
+                        # Nemesis = celui contre qui p perd le plus souvent (%)
+                        nemesis = max(
+                            face_to_face,
+                            key=lambda x: face_to_face[x]["losses"] / face_to_face[x]["played"]
+                        )
+                        nemesis_rate = round(face_to_face[nemesis]["losses"] / face_to_face[nemesis]["played"] * 100)
+ 
+                        # Elo farming = celui contre qui p gagne le plus souvent (%)
+                        farming = max(
+                            face_to_face,
+                            key=lambda x: face_to_face[x]["wins"] / face_to_face[x]["played"]
+                        )
+                        farming_rate = round(face_to_face[farming]["wins"] / face_to_face[farming]["played"] * 100)
+ 
+                        col1, col2 = st.columns(2)
+                        col1.error(f"😈 **Nemesis : {nemesis}**\nPerd contre lui {nemesis_rate}% du temps")
+                        col2.success(f"🌾 **Elo farming : {farming}**\nGagne contre lui {farming_rate}% du temps")
+ 
+                        # Tableau détaillé
+                        df_faceoff = pd.DataFrame([
+                            {
+                                "Adversaire": opp,
+                                "Confrontations": d["played"],
+                                "Victoires": d["wins"],
+                                "Défaites": d["losses"],
+                                "Win rate (%)": round(d["wins"] / d["played"] * 100),
+                            }
+                            for opp, d in face_to_face.items()
+                        ]).sort_values("Win rate (%)", ascending=False).reset_index(drop=True)
+ 
+                        st.dataframe(df_faceoff, use_container_width=True, hide_index=True)
+                    else:
+                        st.info("Pas assez de données pour calculer nemesis / elo farming.")
 
 # ─────────────────────────────────────────
 # PAGE : JOUEURS
