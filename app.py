@@ -157,7 +157,7 @@ if page == "🏆 Classement":
             wins   = sum(1 for m in history if name in m["winners"])
             winrate = f"{round(wins/played*100)}%" if played > 0 else "—"
 
-            cols = st.columns([0.5, 2, 1.5, 1.5, 1.5])
+            cols = st.columns([0.5, 1.4, 1.4, 1.4, 1.4])
             cols[0].markdown(rank)
             cols[1].markdown(f"**{name}**")
             cols[2].markdown(f"`{elo}`")
