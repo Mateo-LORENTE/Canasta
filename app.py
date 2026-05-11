@@ -147,7 +147,6 @@ if page == "🏆 Classement":
         cols[2].markdown("**Elo**")
         cols[3].markdown("**Matchs joués**")
         cols[4].markdown("**Win rate**")
-        st.markdown("---")
 
         for i, (name, elo) in enumerate(sorted_players):
             rank = medals[i] if i < 3 else str(i + 1)
