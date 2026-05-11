@@ -137,119 +137,32 @@ if page == "🏆 Classement":
 
     if not players:
         st.info("Aucun joueur pour l'instant. Ajoutez des joueurs dans l'onglet Joueurs.")
-
     else:
         sorted_players = sorted(players.items(), key=lambda x: x[1], reverse=True)
 
         medals = ["🥇", "🥈", "🥉"]
-
-        # CSS responsive
-        st.markdown("""
-        <style>
-        .ranking-row {
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            background-color: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .ranking-name {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .ranking-stats {
-            font-size: 14px;
-            opacity: 0.85;
-        }
-
-        @media (min-width: 768px) {
-            .mobile-card {
-                display: none;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .desktop-table {
-                display: none;
-            }
-        }
-        </style>
-        """, unsafe_allow_html=True)
-
-        # ===== VERSION DESKTOP =====
-        st.markdown('<div class="desktop-table">', unsafe_allow_html=True)
-
         cols = st.columns([0.5, 2, 1.5, 1.5, 1.5])
         cols[0].markdown("**#**")
         cols[1].markdown("**Joueur**")
         cols[2].markdown("**Elo**")
         cols[3].markdown("**Matchs joués**")
         cols[4].markdown("**Win rate**")
-
         st.markdown("---")
 
         for i, (name, elo) in enumerate(sorted_players):
-
             rank = medals[i] if i < 3 else str(i + 1)
 
-            played = sum(
-                1 for m in history
-                if name in m["winners"] + m["losers"] + m["neutrals"]
-            )
-
-            wins = sum(
-                1 for m in history
-                if name in m["winners"]
-            )
-
-            winrate = f"{round(wins / played * 100)}%" if played > 0 else "—"
+            # Stats depuis l'historique
+            played = sum(1 for m in history if name in m["winners"] + m["losers"] + m["neutrals"])
+            wins   = sum(1 for m in history if name in m["winners"])
+            winrate = f"{round(wins/played*100)}%" if played > 0 else "—"
 
             cols = st.columns([0.5, 2, 1.5, 1.5, 1.5])
-
             cols[0].markdown(rank)
             cols[1].markdown(f"**{name}**")
             cols[2].markdown(f"`{elo}`")
             cols[3].markdown(str(played))
             cols[4].markdown(winrate)
-
-        st.markdown("</div>", unsafe_allow_html=True)
-
-        # ===== VERSION MOBILE =====
-        st.markdown('<div class="mobile-card">', unsafe_allow_html=True)
-
-        for i, (name, elo) in enumerate(sorted_players):
-
-            rank = medals[i] if i < 3 else f"#{i+1}"
-
-            played = sum(
-                1 for m in history
-                if name in m["winners"] + m["losers"] + m["neutrals"]
-            )
-
-            wins = sum(
-                1 for m in history
-                if name in m["winners"]
-            )
-
-            winrate = f"{round(wins / played * 100)}%" if played > 0 else "—"
-
-            st.markdown(f"""
-            <div class="ranking-row">
-                <div class="ranking-name">
-                    {rank} {name}
-                </div>
-
-                <div class="ranking-stats">
-                    🏆 Elo : <b>{elo}</b><br>
-                    🎮 Matchs : <b>{played}</b><br>
-                    📈 Win rate : <b>{winrate}</b>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-
-        st.markdown("</div>", unsafe_allow_html=True)
 
 
 
