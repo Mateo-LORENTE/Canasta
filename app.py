@@ -164,6 +164,8 @@ if page == "🏆 Classement":
             cols[3].markdown(str(played))
             cols[4].markdown(winrate)
 
+
+
 # ─────────────────────────────────────────
 # PAGE : MATCH
 # ─────────────────────────────────────────
