@@ -425,8 +425,8 @@ elif page == "📈 Statistiques":
                         farming_rate = round(face_to_face[farming]["wins"] / face_to_face[farming]["played"] * 100)
  
                         col1, col2 = st.columns(2)
-                        col1.error(f"😈 **Nemesis : {nemesis}**\nPerd contre lui {nemesis_rate}% du temps")
-                        col2.success(f"🌾 **Elo farming : {farming}**\nGagne contre lui {farming_rate}% du temps")
+                        col1.error(f"😈 **Nemesis : {nemesis}**\n\nPerd contre lui {nemesis_rate}% du temps")
+                        col2.success(f"🌾 **Elo farming : {farming}**\n\nGagne contre lui {farming_rate}% du temps")
  
                         # Tableau détaillé
                         df_faceoff = pd.DataFrame([
