@@ -141,7 +141,7 @@ if page == "🏆 Classement":
         sorted_players = sorted(players.items(), key=lambda x: x[1], reverse=True)
 
         medals = ["🥇", "🥈", "🥉"]
-        cols = st.columns([0.5, 1.4, 1.4, 1.4, 1.4])
+        cols = st.columns([0.5,0.5,0.5,0.5,0.5])
         cols[0].markdown("**#**")
         cols[1].markdown("**Joueur**")
         cols[2].markdown("**Elo**")
@@ -156,7 +156,7 @@ if page == "🏆 Classement":
             wins   = sum(1 for m in history if name in m["winners"])
             winrate = f"{round(wins/played*100)}%" if played > 0 else "—"
 
-            cols = st.columns([0.5, 1.4, 1.4, 1.4, 1.4])
+            cols = st.columns([0.5,0.5,0.5,0.5,0.5])
             cols[0].markdown(rank)
             cols[1].markdown(f"**{name}**")
             cols[2].markdown(f"`{elo}`")
