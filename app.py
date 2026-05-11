@@ -141,7 +141,7 @@ if page == "🏆 Classement":
         sorted_players = sorted(players.items(), key=lambda x: x[1], reverse=True)
 
         medals = ["🥇", "🥈", "🥉"]
-        cols = st.columns([0.5, 2, 1.5, 1.5, 1.5])
+        cols = st.columns([0.5, 1.4, 1.4, 1.4, 1.4])
         cols[0].markdown("**#**")
         cols[1].markdown("**Joueur**")
         cols[2].markdown("**Elo**")
