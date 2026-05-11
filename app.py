@@ -164,16 +164,6 @@ if page == "🏆 Classement":
             cols[3].markdown(str(played))
             cols[4].markdown(winrate)
 
-        # Graphique barres
-        st.markdown("---")
-        df = pd.DataFrame(sorted_players, columns=["Joueur", "Elo"])
-        fig = px.bar(df, x="Joueur", y="Elo", color="Elo",
-                     color_continuous_scale="Blues",
-                     title="Elo par joueur")
-        fig.update_layout(showlegend=False, coloraxis_showscale=False,
-                          plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
-        st.plotly_chart(fig, use_container_width=True)
-
 # ─────────────────────────────────────────
 # PAGE : MATCH
 # ─────────────────────────────────────────
