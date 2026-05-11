@@ -308,6 +308,112 @@ elif page == "📈 Statistiques":
             else:
                 st.info("Jouez des matchs pour voir l'évolution des Elos.")
 
+            # ─────────────────────────────────────────
+            # GOAT / WOAT
+            # ─────────────────────────────────────────
+            st.markdown("---")
+            st.markdown("## 🐐 GOAT & 💀 WOAT")
+
+            from datetime import datetime
+
+            # Construire timeline complète
+            timeline = []
+
+            for player, hist in elo_history.items():
+                for e in hist:
+                    timeline.append({
+                        "player": player,
+                        "elo": e["elo"],
+                        "date": datetime.strptime(e["date"], "%d/%m/%Y %H:%M")
+                    })
+
+            timeline = sorted(timeline, key=lambda x: x["date"])
+
+            if timeline:
+
+                # ===== GOAT =====
+                goat_record = None
+                goat_start = None
+                goat_end = None
+
+                current_best = -999999
+
+                for event in timeline:
+
+                    if event["elo"] > current_best:
+
+                        # Si ancien record -> fermer son règne
+                        if goat_record is not None:
+                            goat_record["end"] = event["date"]
+
+                        current_best = event["elo"]
+
+                        goat_record = {
+                            "player": event["player"],
+                            "elo": event["elo"],
+                            "start": event["date"],
+                            "end": None
+                        }
+
+                # Le règne continue jusqu'à maintenant
+                if goat_record:
+                    goat_record["end"] = datetime.now()
+
+                # ===== WOAT =====
+                woat_record = None
+
+                current_worst = 999999
+
+                for event in timeline:
+
+                    if event["elo"] < current_worst:
+
+                        if woat_record is not None:
+                            woat_record["end"] = event["date"]
+
+                        current_worst = event["elo"]
+
+                        woat_record = {
+                            "player": event["player"],
+                            "elo": event["elo"],
+                            "start": event["date"],
+                            "end": None
+                        }
+
+                if woat_record:
+                    woat_record["end"] = datetime.now()
+
+                # ===== Affichage =====
+                def duration_text(start, end):
+                    delta = end - start
+
+                    days = delta.days
+                    hours = delta.seconds // 3600
+
+                    if days > 0:
+                        return f"{days}j {hours}h"
+                    return f"{hours}h"
+
+                col1, col2 = st.columns(2)
+
+                # GOAT
+                goat_duration = duration_text(goat_record["start"], goat_record["end"])
+
+                col1.success(
+                    f"🐐 **GOAT : {goat_record['player']}**\n\n"
+                    f"Elo record : **{goat_record['elo']}**\n\n"
+                    f"👑 Règne : {goat_duration}"
+                )
+
+                # WOAT
+                woat_duration = duration_text(woat_record["start"], woat_record["end"])
+
+                col2.error(
+                    f"💀 **WOAT : {woat_record['player']}**\n\n"
+                    f"Elo minimum : **{woat_record['elo']}**\n\n"
+                    f"🪦 Règne : {woat_duration}"
+                )
+
 
            # ── Analyse individuelle ────────────────────────────────────────
             st.markdown("---")
