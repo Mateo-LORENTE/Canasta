@@ -347,21 +347,38 @@ elif page == "📈 Statistiques":
                 for event in timeline:
                     if event["elo"] > current_best:
                         if goat_record is not None:
-                            goat_record["end"] = event["date"]
-                        current_best = event["elo"]
-                        goat_record  = {"player": event["player"], "elo": event["elo"], "start": event["date"], "end": None}
+                            if event["player"] == goat_record["player"]:
+                                # Il bat son propre record, on garde le start original
+                                old_start = goat_record["start"]
+                                current_best = event["elo"]
+                                goat_record = {"player": event["player"], "elo": event["elo"], "start": old_start, "end": None}
+                            else:
+                                goat_record["end"] = event["date"]
+                                current_best = event["elo"]
+                                goat_record = {"player": event["player"], "elo": event["elo"], "start": event["date"], "end": None}
+                        else:
+                            current_best = event["elo"]
+                            goat_record = {"player": event["player"], "elo": event["elo"], "start": event["date"], "end": None}
                 if goat_record:
                     goat_record["end"] = datetime.now()
-
+                
                 # WOAT
                 woat_record   = None
                 current_worst = 999999
                 for event in timeline:
                     if event["elo"] < current_worst:
                         if woat_record is not None:
-                            woat_record["end"] = event["date"]
-                        current_worst = event["elo"]
-                        woat_record   = {"player": event["player"], "elo": event["elo"], "start": event["date"], "end": None}
+                            if event["player"] == woat_record["player"]:
+                                old_start = woat_record["start"]
+                                current_worst = event["elo"]
+                                woat_record = {"player": event["player"], "elo": event["elo"], "start": old_start, "end": None}
+                            else:
+                                woat_record["end"] = event["date"]
+                                current_worst = event["elo"]
+                                woat_record = {"player": event["player"], "elo": event["elo"], "start": event["date"], "end": None}
+                        else:
+                            current_worst = event["elo"]
+                            woat_record = {"player": event["player"], "elo": event["elo"], "start": event["date"], "end": None}
                 if woat_record:
                     woat_record["end"] = datetime.now()
 
