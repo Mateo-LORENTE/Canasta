@@ -308,7 +308,7 @@ elif page == "📈 Statistiques":
                     if name in elo_history and elo_history[name]:
                         h = elo_history[name]
                         fig.add_trace(go.Scatter(
-                            x=[e["date"] for e in h],
+                            x=list(range(len(h))),
                             y=[e["elo"]  for e in h],
                             mode="lines+markers",
                             name=name,
