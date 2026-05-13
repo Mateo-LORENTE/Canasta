@@ -249,9 +249,9 @@ elif page == "⚔️ Match":
                 st.markdown("")
                 if st.button("✅ Valider le match", type="primary"):
                     update_elo(winners, losers, neutrals)
-                    st.session_state["w"] = []
-                    st.session_state["l"] = []
-                    st.session_state["n"] = []
+                    for key in ["w", "l", "n"]:
+                        if key in st.session_state:
+                            del st.session_state[key]
                     st.success("Match enregistré !")
                     st.rerun()
 
