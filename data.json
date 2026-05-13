@@ -1,12 +1,19 @@
 {
   "players": {
-    "Martin.H": 1000
+    "Martin.H": 1000,
+    "Paul.D": 1000
   },
   "history": [],
   "elo_history": {
     "Martin.H": [
       {
         "date": "13/05/2026 19:18",
+        "elo": 1000
+      }
+    ],
+    "Paul.D": [
+      {
+        "date": "13/05/2026 19:19",
         "elo": 1000
       }
     ]
