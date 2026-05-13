@@ -1,5 +1,14 @@
 {
-  "players": {},
+  "players": {
+    "Martin.H": 1000
+  },
   "history": [],
-  "elo_history": {}
+  "elo_history": {
+    "Martin.H": [
+      {
+        "date": "13/05/2026 19:18",
+        "elo": 1000
+      }
+    ]
+  }
 }
