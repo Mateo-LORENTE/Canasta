@@ -1,11 +1,29 @@
 {
   "players": {
-    "Martin.H": 986,
-    "Paul.D": 1015,
+    "Martin.H": 1002,
+    "Paul.D": 999,
     "Dimitri.C": 970,
     "Mateo.L": 1029
   },
   "history": [
+    {
+      "date": "13/05/2026 19:26",
+      "winners": [
+        "Martin.H"
+      ],
+      "losers": [
+        "Paul.D"
+      ],
+      "neutrals": [],
+      "deltas": {
+        "Martin.H": 16,
+        "Paul.D": -16
+      },
+      "snapshot_before": {
+        "Martin.H": 986,
+        "Paul.D": 1015
+      }
+    },
     {
       "date": "13/05/2026 19:25",
       "winners": [
@@ -84,6 +102,10 @@
       {
         "date": "13/05/2026 19:25",
         "elo": 986
+      },
+      {
+        "date": "13/05/2026 19:26",
+        "elo": 1002
       }
     ],
     "Paul.D": [
@@ -94,6 +116,10 @@
       {
         "date": "13/05/2026 19:25",
         "elo": 1015
+      },
+      {
+        "date": "13/05/2026 19:26",
+        "elo": 999
       }
     ],
     "Dimitri.C": [
