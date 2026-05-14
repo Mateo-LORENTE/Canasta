@@ -226,9 +226,20 @@ if history:
 
     col1, col2 = st.columns(2)
     if win_streak > 0:
-        col1.warning(f"🔥 **Joueur à abattre : {best_win}**\n\n+elo sur {win_streak} match(s) consécutif(s)")
+        col1.markdown(f"""
+        <div style="background-color:#cc0000; padding:15px; border-radius:10px; color:white;">
+            🔥 <strong>Joueur à abattre : {best_win}</strong><br><br>
+            {win_streak} victoires consécutives
+        </div>
+        """, unsafe_allow_html=True)
+
     if lose_streak > 0:
-        col2.error(f"🤡 **Neuil du moment : {best_lose}**\n\n-elo sur {lose_streak} match(s) consécutif(s)")
+        col2.markdown(f"""
+        <div style="background-color:#0055cc; padding:15px; border-radius:10px; color:white;">
+            🤡 <strong>Neuil du moment : {best_lose}</strong><br><br>
+            -elo sur {lose_streak} défaites consécutives
+        </div>
+        """, unsafe_allow_html=True)
 # ─────────────────────────────────────────
 # PAGE : MATCH
 # ─────────────────────────────────────────
