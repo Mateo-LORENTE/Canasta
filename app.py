@@ -184,6 +184,51 @@ if page == "🏆 Classement":
                 </div>
                 """, unsafe_allow_html=True)
 
+
+st.markdown("---")
+
+def get_streaks(name):
+    win_streak  = 0
+    lose_streak = 0
+
+    for m in history:  # history est déjà du plus récent au plus ancien
+        all_p = m["winners"] + m["losers"] + m.get("neutrals", [])
+        if name not in all_p:
+            continue
+        delta = m["deltas"].get(name, 0)
+        if delta == 0:
+            continue
+        if delta > 0:
+            win_streak += 1
+        else:
+            break
+
+    for m in history:
+        all_p = m["winners"] + m["losers"] + m.get("neutrals", [])
+        if name not in all_p:
+            continue
+        delta = m["deltas"].get(name, 0)
+        if delta == 0:
+            continue
+        if delta < 0:
+            lose_streak += 1
+        else:
+            break
+
+    return win_streak, lose_streak
+
+if history:
+    best_win  = max(players.keys(), key=lambda n: get_streaks(n)[0])
+    best_lose = max(players.keys(), key=lambda n: get_streaks(n)[1])
+
+    win_streak  = get_streaks(best_win)[0]
+    lose_streak = get_streaks(best_lose)[1]
+
+    col1, col2 = st.columns(2)
+    if win_streak > 0:
+        col1.warning(f"🔥 **Joueur à abattre : {best_win}**\n\n+elo sur {win_streak} match(s) consécutif(s)")
+    if lose_streak > 0:
+        col2.error(f"🤡 **Neuil du moment : {best_lose}**\n\n-elo sur {lose_streak} match(s) consécutif(s)")
 # ─────────────────────────────────────────
 # PAGE : MATCH
 # ─────────────────────────────────────────
