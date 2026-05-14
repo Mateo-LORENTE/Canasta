@@ -227,19 +227,21 @@ if history:
     col1, col2 = st.columns(2)
     if win_streak > 0:
         col1.markdown(f"""
-        <div style="background-color:#cc0000; padding:15px; border-radius:10px; color:white;">
-            🔥 <strong>Joueur à abattre : {best_win}</strong><br><br>
-            {win_streak} victoires consécutives
-        </div>
-        """, unsafe_allow_html=True)
-
+    <div style="background-color:rgba(200,0,0,0.15); border:1px solid rgba(200,0,0,0.4); padding:15px; border-radius:10px;">
+        🔥 <strong>Joueur à abattre : {best_win}</strong><br><br>
+        {win_streak} victoires consécutives
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("<div style='margin:10px 0;'></div>", unsafe_allow_html=True)
+    
     if lose_streak > 0:
         col2.markdown(f"""
-        <div style="background-color:#0055cc; padding:15px; border-radius:10px; color:white;">
-            🤡 <strong>Neuil du moment : {best_lose}</strong><br><br>
-            -elo sur {lose_streak} défaites consécutives
-        </div>
-        """, unsafe_allow_html=True)
+    <div style="background-color:rgba(0,80,200,0.15); border:1px solid rgba(0,80,200,0.4); padding:15px; border-radius:10px;">
+        🤡 <strong>Neuil du moment : {best_lose}</strong><br><br>
+        -elo sur {lose_streak} défaites consécutives
+    </div>
+    """, unsafe_allow_html=True)
 # ─────────────────────────────────────────
 # PAGE : MATCH
 # ─────────────────────────────────────────
