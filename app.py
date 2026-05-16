@@ -230,11 +230,10 @@ if page == "🏆 Classement":
             <div style="background-color:rgba(200,0,0,0.15); border:1px solid rgba(200,0,0,0.4); padding:8px; border-radius:10px;">
                 🔥 <strong>Joueur à abattre : {best_win}</strong><br><br>
                 {win_streak} victoires consécutives
+                <div style="background-color:rgba(200,0,0,0.15); border:1px solid rgba(200,0,0,0.4); padding:8px; border-radius:10px; margin-bottom:20px;">
             </div>
             """, unsafe_allow_html=True)
             
-            st.markdown("")
-            st.markdown("")
             
             if lose_streak > 0:
                 col2.markdown(f"""
