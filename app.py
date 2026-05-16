@@ -516,13 +516,11 @@ elif page == "📈 Statistiques":
 
                     if partner_count:
                         best_partner = max(partner_count, key=partner_count.get)
-                        cols = st.columns(len(partner_count))
-                        for i, (mate, count) in enumerate(sorted(partner_count.items(), key=lambda x: -x[1])):
-                            # Calcul winrate avec ce partenaire
-                            matchs_ensemble = [m for m in matchs_2v2 if mate in (m["winners"] if p in m["winners"] else m["losers"])]
-                            wins_ensemble   = sum(1 for m in matchs_ensemble if p in m["winners"])
-                            wr = round(wins_ensemble / count * 100) if count > 0 else 0
-                            cols[i].metric(mate, f"{count} fois · Winrate : {wr}%", "⭐" if mate == best_partner else "")
+                        count = partner_count[best_partner]
+                        matchs_ensemble = [m for m in matchs_2v2 if best_partner in (m["winners"] if p in m["winners"] else m["losers"])]
+                        wins_ensemble   = sum(1 for m in matchs_ensemble if p in m["winners"])
+                        wr = round(wins_ensemble / count * 100) if count > 0 else 0
+                        st.markdown(f"⭐ **{best_partner}**<br><span style='font-size:13px;color:gray;'>{count}x · {wr}%</span>", unsafe_allow_html=True)
                     else:
                         st.info("Pas de matchs 2v2 enregistrés.")
 
