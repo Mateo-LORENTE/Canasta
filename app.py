@@ -185,7 +185,8 @@ if page == "🏆 Classement":
                 """, unsafe_allow_html=True)
 
 
-        
+        st.markdown("")
+        st.markdown("")
         def get_streaks(name):
             win_streak  = 0
             lose_streak = 0
