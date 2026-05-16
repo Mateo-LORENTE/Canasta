@@ -150,7 +150,7 @@ def update_elo(winners, losers, neutrals):
 # NAVIGATION
 # ─────────────────────────────────────────
 st.sidebar.title("🃏 Canasta")
-page = st.sidebar.radio("Navigation", ["🏆 Classement", "⚔️ Match", "📈 Statistiques", "👤 Joueurs"])
+page = st.sidebar.radio("Navigation", ["🏆 Classement", "⚔️ Match", "📈 Statistiques", "👤 Joueurs", "🃏 FFCa"])
 st.sidebar.markdown("---")
 if st.sidebar.button("🔄 Rafraîchir les données"):
     del st.session_state["data"]
@@ -618,3 +618,7 @@ elif page == "👤 Joueurs":
                 save_data(data)
                 st.success(f"'{name}' supprimé.")
                 st.rerun()
+
+elif page == "🃏 FFCa":
+    st.title("🃏 Fédération Française de Canasta")
+    st.markdown("---")
