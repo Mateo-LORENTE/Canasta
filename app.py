@@ -529,7 +529,8 @@ elif page == "📈 Statistiques":
                     else:
                         st.info("Pas de matchs 2v2 enregistrés.")
 
-
+                    st.markdown("---")
+                    st.markdown(f"#### ⚔️ Nemesis & Elo farming")
                     face_to_face = {}
                     for m in p_matchs:
                         if p in m["winners"]:
