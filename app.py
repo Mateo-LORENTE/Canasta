@@ -185,62 +185,62 @@ if page == "🏆 Classement":
                 """, unsafe_allow_html=True)
 
 
-
-def get_streaks(name):
-    win_streak  = 0
-    lose_streak = 0
-
-    for m in history:  # history est déjà du plus récent au plus ancien
-        all_p = m["winners"] + m["losers"] + m.get("neutrals", [])
-        if name not in all_p:
-            continue
-        delta = m["deltas"].get(name, 0)
-        if delta == 0:
-            continue
-        if delta > 0:
-            win_streak += 1
-        else:
-            break
-
-    for m in history:
-        all_p = m["winners"] + m["losers"] + m.get("neutrals", [])
-        if name not in all_p:
-            continue
-        delta = m["deltas"].get(name, 0)
-        if delta == 0:
-            continue
-        if delta < 0:
-            lose_streak += 1
-        else:
-            break
-
-    return win_streak, lose_streak
-
-if history:
-    best_win  = max(players.keys(), key=lambda n: get_streaks(n)[0])
-    best_lose = max(players.keys(), key=lambda n: get_streaks(n)[1])
-
-    win_streak  = get_streaks(best_win)[0]
-    lose_streak = get_streaks(best_lose)[1]
-
-    col1, col2 = st.columns(2)
-    if win_streak > 0:
-        col1.markdown(f"""
-    <div style="background-color:rgba(200,0,0,0.15); border:1px solid rgba(200,0,0,0.4); padding:8px; border-radius:10px;">
-        🔥 <strong>Joueur à abattre : {best_win}</strong><br><br>
-        {win_streak} victoires consécutives
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("")
-    
-    if lose_streak > 0:
-        col2.markdown(f"""
-    <div style="background-color:rgba(0,80,200,0.15); border:1px solid rgba(0,80,200,0.4); padding:8px; border-radius:10px;">
-        🤡 <strong>Neuil du moment : {best_lose}</strong><br><br>
-        {lose_streak} défaites consécutives
-    </div>
-    """, unsafe_allow_html=True)
+        
+        def get_streaks(name):
+            win_streak  = 0
+            lose_streak = 0
+        
+            for m in history:  # history est déjà du plus récent au plus ancien
+                all_p = m["winners"] + m["losers"] + m.get("neutrals", [])
+                if name not in all_p:
+                    continue
+                delta = m["deltas"].get(name, 0)
+                if delta == 0:
+                    continue
+                if delta > 0:
+                    win_streak += 1
+                else:
+                    break
+        
+            for m in history:
+                all_p = m["winners"] + m["losers"] + m.get("neutrals", [])
+                if name not in all_p:
+                    continue
+                delta = m["deltas"].get(name, 0)
+                if delta == 0:
+                    continue
+                if delta < 0:
+                    lose_streak += 1
+                else:
+                    break
+        
+            return win_streak, lose_streak
+        
+        if history:
+            best_win  = max(players.keys(), key=lambda n: get_streaks(n)[0])
+            best_lose = max(players.keys(), key=lambda n: get_streaks(n)[1])
+        
+            win_streak  = get_streaks(best_win)[0]
+            lose_streak = get_streaks(best_lose)[1]
+        
+            col1, col2 = st.columns(2)
+            if win_streak > 0:
+                col1.markdown(f"""
+            <div style="background-color:rgba(200,0,0,0.15); border:1px solid rgba(200,0,0,0.4); padding:8px; border-radius:10px;">
+                🔥 <strong>Joueur à abattre : {best_win}</strong><br><br>
+                {win_streak} victoires consécutives
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("")
+            
+            if lose_streak > 0:
+                col2.markdown(f"""
+            <div style="background-color:rgba(0,80,200,0.15); border:1px solid rgba(0,80,200,0.4); padding:8px; border-radius:10px;">
+                🤡 <strong>Neuil du moment : {best_lose}</strong><br><br>
+                {lose_streak} défaites consécutives
+            </div>
+            """, unsafe_allow_html=True)
 # ─────────────────────────────────────────
 # PAGE : MATCH
 # ─────────────────────────────────────────
