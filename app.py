@@ -522,7 +522,7 @@ elif page == "📈 Statistiques":
                             matchs_ensemble = [m for m in matchs_2v2 if mate in (m["winners"] if p in m["winners"] else m["losers"])]
                             wins_ensemble   = sum(1 for m in matchs_ensemble if p in m["winners"])
                             wr = round(wins_ensemble / count * 100) if count > 0 else 0
-                            cols[i].metric(mate, f"{count} fois · {wr}%", "⭐" if mate == best_partner else "")
+                            cols[i].metric(mate, f"{count} fois · Winrate : {wr}%", "⭐" if mate == best_partner else "")
                     else:
                         st.info("Pas de matchs 2v2 enregistrés.")
 
