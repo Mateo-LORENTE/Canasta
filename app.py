@@ -11,7 +11,8 @@ import base64
 from datetime import datetime, timezone, timedelta
 
 
-
+def now_fr():
+    return datetime.now(timezone.utc) + timedelta(hours=2)
 # ─────────────────────────────────────────
 # CONFIG
 # ─────────────────────────────────────────
@@ -248,8 +249,7 @@ if page == "🏆 Classement":
 # PAGE : MATCH
 # ─────────────────────────────────────────
 elif page == "⚔️ Match":
-    def now_fr():
-        return datetime.now(timezone.utc) + timedelta(hours=2)
+  
         
     st.title("⚔️ Enregistrer un match")
 
@@ -395,7 +395,7 @@ elif page == "📈 Statistiques":
                     timeline.append({
                         "player": player,
                         "elo": e["elo"],
-                        "date": datetime.strptime(e["date"], "%d/%m/%Y %H:%M")
+                        "date": datetime.strptime(e["date"], "%d/%m/%Y %H:%M").replace(tzinfo=timezone.utc)
                     })
             timeline = sorted(timeline, key=lambda x: x["date"])
 
