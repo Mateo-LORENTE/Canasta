@@ -224,19 +224,18 @@ if page == "🏆 Classement":
             win_streak  = get_streaks(best_win)[0]
             lose_streak = get_streaks(best_lose)[1]
         
-            col1, col2 = st.columns(2)
             if win_streak > 0:
-                col1.markdown(f"""
+                st.markdown(f"""
             <div style="background-color:rgba(200,0,0,0.15); border:1px solid rgba(200,0,0,0.4); padding:8px; border-radius:10px;">
                 🔥 <strong>Joueur à abattre : {best_win}</strong><br><br>
                 {win_streak} victoires consécutives
-                <div style="background-color:rgba(200,0,0,0.15); border:1px solid rgba(200,0,0,0.4); padding:8px; border-radius:10px; margin-bottom:20px;">
             </div>
             """, unsafe_allow_html=True)
             
+            st.markdown("")
             
             if lose_streak > 0:
-                col2.markdown(f"""
+                st.markdown(f"""
             <div style="background-color:rgba(0,80,200,0.15); border:1px solid rgba(0,80,200,0.4); padding:8px; border-radius:10px;">
                 🤡 <strong>Neuil du moment : {best_lose}</strong><br><br>
                 {lose_streak} défaites consécutives
