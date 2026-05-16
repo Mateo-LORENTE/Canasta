@@ -8,6 +8,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 import requests
 import base64
+from datetime import datetime, timezone, timedelta
+
+
 
 # ─────────────────────────────────────────
 # CONFIG
@@ -44,7 +47,7 @@ def save_data(data):
     try:
         content = base64.b64encode(json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8")).decode("utf-8")
         payload = {
-            "message": f"update data {datetime.now().strftime('%d/%m/%Y %H:%M')}",
+            "message": f"update data {now_fr().strftime('%d/%m/%Y %H:%M')}",
             "content": content,
         }
         if "github_sha" in st.session_state:
@@ -124,7 +127,7 @@ def update_elo(winners, losers, neutrals):
     deltas = {n: players[n] - snapshot[n] for n in snapshot}
 
     entry = {
-        "date": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "date": now_fr().strftime("%d/%m/%Y %H:%M"),
         "winners": winners,
         "losers": losers,
         "neutrals": neutrals,
@@ -133,7 +136,7 @@ def update_elo(winners, losers, neutrals):
     }
     history.insert(0, entry)
 
-    ts = datetime.now().strftime("%d/%m/%Y %H:%M")
+    ts = now_fr().strftime("%d/%m/%Y %H:%M")
     for p in winners + losers + neutrals:
         if p not in elo_history:
             elo_history[p] = []
@@ -245,6 +248,9 @@ if page == "🏆 Classement":
 # PAGE : MATCH
 # ─────────────────────────────────────────
 elif page == "⚔️ Match":
+    def now_fr():
+        return datetime.now(timezone.utc) + timedelta(hours=2)
+        
     st.title("⚔️ Enregistrer un match")
 
     if len(players) < 2:
@@ -413,7 +419,7 @@ elif page == "📈 Statistiques":
                             current_best = event["elo"]
                             goat_record = {"player": event["player"], "elo": event["elo"], "start": event["date"], "end": None}
                 if goat_record:
-                    goat_record["end"] = datetime.now()
+                    goat_record["end"] = now_fr()
                 
                 # WOAT
                 woat_record   = None
@@ -433,7 +439,7 @@ elif page == "📈 Statistiques":
                             current_worst = event["elo"]
                             woat_record = {"player": event["player"], "elo": event["elo"], "start": event["date"], "end": None}
                 if woat_record:
-                    woat_record["end"] = datetime.now()
+                    woat_record["end"] = now_fr()
 
                 def duration_text(start, end):
                     delta = end - start
@@ -580,7 +586,7 @@ elif page == "👤 Joueurs":
             st.error(f"'{new_name}' existe déjà.")
         else:
             players[new_name] = new_elo
-            elo_history[new_name] = [{"date": datetime.now().strftime("%d/%m/%Y %H:%M"), "elo": new_elo}]
+            elo_history[new_name] = [{"date": now_fr().strftime("%d/%m/%Y %H:%M"), "elo": new_elo}]
             data["elo_history"] = elo_history
             save_data(data)
             st.success(f"'{new_name}' ajouté avec Elo {new_elo}.")
