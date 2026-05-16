@@ -520,12 +520,15 @@ elif page == "📈 Statistiques":
                         matchs_ensemble = [m for m in matchs_2v2 if best_partner in (m["winners"] if p in m["winners"] else m["losers"])]
                         wins_ensemble   = sum(1 for m in matchs_ensemble if p in m["winners"])
                         wr = round(wins_ensemble / count * 100) if count > 0 else 0
-                        st.markdown(f"⭐ **{best_partner}**<br><span style='font-size:16px;'>{count}x · {wr}%</span>", unsafe_allow_html=True)
+                        st.markdown(f"""
+                        <div style="background-color:rgba(200,0,150,0.15); border:1px solid rgba(200,0,150,0.4); padding:8px; border-radius:10px;">
+                            ❤️ <strong>Partenaire préféré : {best_partner}</strong><br><br>
+                            {count}x ensemble · {wr}% de victoires
+                        </div>
+                        """, unsafe_allow_html=True)
                     else:
                         st.info("Pas de matchs 2v2 enregistrés.")
 
-                    st.markdown("---")
-                    st.markdown(f"#### ⚔️ Nemesis & Elo farming")
 
                     face_to_face = {}
                     for m in p_matchs:
