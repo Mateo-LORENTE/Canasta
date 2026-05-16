@@ -520,7 +520,7 @@ elif page == "📈 Statistiques":
                         matchs_ensemble = [m for m in matchs_2v2 if best_partner in (m["winners"] if p in m["winners"] else m["losers"])]
                         wins_ensemble   = sum(1 for m in matchs_ensemble if p in m["winners"])
                         wr = round(wins_ensemble / count * 100) if count > 0 else 0
-                        st.markdown(f"⭐ **{best_partner}**<br><span style='font-size:13px;color:gray;'>{count}x · {wr}%</span>", unsafe_allow_html=True)
+                        st.markdown(f"⭐ **{best_partner}**<br><span style='font-size:16px;'>{count}x · {wr}%</span>", unsafe_allow_html=True)
                     else:
                         st.info("Pas de matchs 2v2 enregistrés.")
 
