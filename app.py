@@ -234,6 +234,7 @@ if page == "🏆 Classement":
             """, unsafe_allow_html=True)
             
             st.markdown("")
+            st.markdown("")
             
             if lose_streak > 0:
                 col2.markdown(f"""
