@@ -367,7 +367,7 @@ elif page == "📈 Statistiques":
                     if name in elo_history and elo_history[name]:
                         h = sorted(elo_history[name], key=lambda e: datetime.strptime(e["date"], "%d/%m/%Y %H:%M"))
                         fig.add_trace(go.Scatter(
-                            x=[datetime.strptime(e["date"], "%d/%m/%Y %H:%M") for e in h],
+                            x=[datetime.strptime(e["date"], "%d/%m/%Y %H:%M").strftime("%Y-%m-%d %H:%M") for e in h],
                             y=[e["elo"] for e in h],
                             mode="lines+markers",
                             name=name,
