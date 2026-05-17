@@ -365,20 +365,17 @@ elif page == "📈 Statistiques":
                 fig = go.Figure()
                 for name in selected:
                     if name in elo_history and elo_history[name]:
-                        h = sorted(elo_history[name], key=lambda e: datetime.strptime(e["date"], "%d/%m/%Y %H:%M"))
+                        h = elo_history[name]
                         fig.add_trace(go.Scatter(
-                            x=[datetime.strptime(e["date"], "%d/%m/%Y %H:%M").strftime("%Y-%m-%d %H:%M") for e in h],
-                            y=[e["elo"] for e in h],
+                            x=[e["date"] for e in h],
+                            y=[e["elo"]  for e in h],
                             mode="lines+markers",
                             name=name,
                         ))
                 fig.update_layout(
                     xaxis_title="Date",
                     yaxis_title="Elo",
-                    xaxis=dict(
-                        tickformat="%d/%m/%Y %H:%M",
-                        type="date",
-                    ),
+                    xaxis_tickformat="%d/%m/%Y %H:%M",
                     plot_bgcolor="rgba(0,0,0,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
                     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
