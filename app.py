@@ -375,7 +375,10 @@ elif page == "📈 Statistiques":
                 fig.update_layout(
                     xaxis_title="Date",
                     yaxis_title="Elo",
-                    xaxis_tickformat="%d/%m/%Y %H:%M",
+                    xaxis=dict(
+                        tickformat="%d/%m/%Y %H:%M",
+                        type="date",
+                    ),
                     plot_bgcolor="rgba(0,0,0,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
                     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
