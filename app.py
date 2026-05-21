@@ -385,10 +385,16 @@ elif page == "📈 Statistiques":
                             name=name,
                         ))
             
+                all_dates_str = [d.strftime("%d/%m %H:%M") for d in all_dates]
+
                 fig.update_layout(
                     xaxis_title="Date",
                     yaxis_title="Elo",
-                    xaxis=dict(type="category"),
+                    xaxis=dict(
+                        type="category",
+                        categoryorder="array",
+                        categoryarray=all_dates_str,
+                    ),
                     plot_bgcolor="rgba(0,0,0,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
                     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
