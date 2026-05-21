@@ -481,6 +481,68 @@ elif page == "📈 Statistiques":
                     f"🪦 Règne : {duration_text(woat_record['start'], woat_record['end'])}"
                 )
 
+            st.markdown("#### 👑 Historique des GOAT")
+            goat_history = []
+            tmp_best = -999999
+            tmp_goat = None
+            for event in timeline:
+                if event["elo"] > tmp_best:
+                    if tmp_goat is not None:
+                        if event["player"] != tmp_goat["player"]:
+                            goat_history.append({
+                                "Joueur": tmp_goat["player"],
+                                "Elo record": tmp_goat["elo"],
+                                "Début": tmp_goat["start"].strftime("%d/%m/%Y %H:%M"),
+                                "Fin": event["date"].strftime("%d/%m/%Y %H:%M"),
+                                "Durée": duration_text(tmp_goat["start"], event["date"]),
+                            })
+                            tmp_goat = {"player": event["player"], "elo": event["elo"], "start": event["date"]}
+                        else:
+                            tmp_goat["elo"] = event["elo"]
+                    else:
+                        tmp_goat = {"player": event["player"], "elo": event["elo"], "start": event["date"]}
+                    tmp_best = event["elo"]
+            if tmp_goat:
+                goat_history.append({
+                    "Joueur": tmp_goat["player"],
+                    "Elo record": tmp_goat["elo"],
+                    "Début": tmp_goat["start"].strftime("%d/%m/%Y %H:%M"),
+                    "Fin": "En cours",
+                    "Durée": duration_text(tmp_goat["start"], now_fr()),
+                })
+            st.dataframe(pd.DataFrame(goat_history), use_container_width=True, hide_index=True)
+            
+            st.markdown("#### 🪦 Historique des WOAT")
+            woat_history = []
+            tmp_worst = 999999
+            tmp_woat = None
+            for event in timeline:
+                if event["elo"] < tmp_worst:
+                    if tmp_woat is not None:
+                        if event["player"] != tmp_woat["player"]:
+                            woat_history.append({
+                                "Joueur": tmp_woat["player"],
+                                "Elo minimum": tmp_woat["elo"],
+                                "Début": tmp_woat["start"].strftime("%d/%m/%Y %H:%M"),
+                                "Fin": event["date"].strftime("%d/%m/%Y %H:%M"),
+                                "Durée": duration_text(tmp_woat["start"], event["date"]),
+                            })
+                            tmp_woat = {"player": event["player"], "elo": event["elo"], "start": event["date"]}
+                        else:
+                            tmp_woat["elo"] = event["elo"]
+                    else:
+                        tmp_woat = {"player": event["player"], "elo": event["elo"], "start": event["date"]}
+                    tmp_worst = event["elo"]
+            if tmp_woat:
+                woat_history.append({
+                    "Joueur": tmp_woat["player"],
+                    "Elo minimum": tmp_woat["elo"],
+                    "Début": tmp_woat["start"].strftime("%d/%m/%Y %H:%M"),
+                    "Fin": "En cours",
+                    "Durée": duration_text(tmp_woat["start"], now_fr()),
+                })
+            st.dataframe(pd.DataFrame(woat_history), use_container_width=True, hide_index=True)
+                        
             # ─────────────────────────────────────────
             # ANALYSE INDIVIDUELLE
             # ─────────────────────────────────────────
