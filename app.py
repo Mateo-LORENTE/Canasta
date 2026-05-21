@@ -390,7 +390,12 @@ elif page == "📈 Statistiques":
                 fig.update_layout(
                     xaxis_title="Date",
                     yaxis_title="Elo",
-                    xaxis=dict(tickformat="%d/%m/%Y %H:%M"),
+                    xaxis=dict(
+                        tickformat="%d/%m %H:%M",
+                        tickmode="array",
+                        tickvals=sorted(all_dates),
+                        ticktext=[d.strftime("%d/%m %H:%M") for d in sorted(all_dates)],
+                    ),
                     plot_bgcolor="rgba(0,0,0,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
                     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
