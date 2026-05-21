@@ -511,11 +511,9 @@ elif page == "📈 Statistiques":
                     "Durée": duration_text(tmp_goat["start"], now_fr()),
                 })
             
-            st.dataframe(pd.DataFrame(goat_history[1:-1]), use_container_width=True, hide_index=True)
 
-            for entry in goat_history:
-                en_cours = " 👑 en cours" if entry["Fin"] == "En cours" else ""
-                st.markdown(f"- **{entry['Joueur']}** — {entry['Elo record']} Elo — {entry['Durée']}{en_cours}")
+            for entry in goat_history[1:-1]:
+                st.markdown(f"- **{entry['Joueur']}** — {entry['Elo record']} Elo — {entry['Durée']}")
             
             st.markdown("#### 🪦 Historique des WOAT")
             woat_history = []
@@ -548,10 +546,9 @@ elif page == "📈 Statistiques":
                 })
             if len(woat_history) > 2 : 
                 st.markdown("#### 🪦 Historique des WOAT")
-                st.dataframe(pd.DataFrame(woat_history[1:-1]), use_container_width=True, hide_index=True)
 
            
-                for entry in woat_history:
+                for entry in woat_history[1:-1]:
                     en_cours = " 🪦 en cours" if entry["Fin"] == "En cours" else ""
                     st.markdown(f"- **{entry['Joueur']}** — {entry['Elo minimum']} Elo — {entry['Durée']}{en_cours}")
                         
