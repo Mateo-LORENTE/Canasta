@@ -1,13 +1,35 @@
 {
   "players": {
     "Martin.H": 1030,
-    "Paul.D": 988,
+    "Paul.D": 974,
     "Dimitri.C": 957,
-    "Mateo.L": 1012,
+    "Mateo.L": 1027,
     "Waël": 1028,
     "Mateo R.": 985
   },
   "history": [
+    {
+      "date": "21/05/2026 18:16",
+      "winners": [
+        "Mateo.L"
+      ],
+      "losers": [
+        "Paul.D"
+      ],
+      "neutrals": [
+        "Martin.H"
+      ],
+      "deltas": {
+        "Mateo.L": 15,
+        "Paul.D": -14,
+        "Martin.H": 0
+      },
+      "snapshot_before": {
+        "Mateo.L": 1012,
+        "Paul.D": 988,
+        "Martin.H": 1030
+      }
+    },
     {
       "date": "19/05/2026 18:56",
       "winners": [
@@ -182,6 +204,10 @@
       {
         "date": "17/05/2026 01:43",
         "elo": 1030
+      },
+      {
+        "date": "21/05/2026 18:16",
+        "elo": 1030
       }
     ],
     "Paul.D": [
@@ -208,6 +234,10 @@
       {
         "date": "19/05/2026 18:56",
         "elo": 988
+      },
+      {
+        "date": "21/05/2026 18:16",
+        "elo": 974
       }
     ],
     "Dimitri.C": [
@@ -244,6 +274,10 @@
       {
         "date": "19/05/2026 18:56",
         "elo": 1012
+      },
+      {
+        "date": "21/05/2026 18:16",
+        "elo": 1027
       }
     ],
     "Waël": [
