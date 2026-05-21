@@ -510,7 +510,8 @@ elif page == "📈 Statistiques":
                     "Fin": "En cours",
                     "Durée": duration_text(tmp_goat["start"], now_fr()),
                 })
-            st.dataframe(pd.DataFrame(goat_history), use_container_width=True, hide_index=True)
+            
+            st.dataframe(pd.DataFrame(goat_history[1:-1]), use_container_width=True, hide_index=True)
             
             st.markdown("#### 🪦 Historique des WOAT")
             woat_history = []
@@ -541,7 +542,9 @@ elif page == "📈 Statistiques":
                     "Fin": "En cours",
                     "Durée": duration_text(tmp_woat["start"], now_fr()),
                 })
-            st.dataframe(pd.DataFrame(woat_history), use_container_width=True, hide_index=True)
+            if len(woat_history) > 2 : 
+                st.markdown("#### 🪦 Historique des WOAT")
+                st.dataframe(pd.DataFrame(woat_history[1:-1]), use_container_width=True, hide_index=True)
                         
             # ─────────────────────────────────────────
             # ANALYSE INDIVIDUELLE
