@@ -362,7 +362,6 @@ elif page == "📈 Statistiques":
             selected = st.multiselect("Joueurs à afficher", list(players.keys()), default=list(players.keys()))
 
             if selected and elo_history:
-                # Collecter toutes les dates de tous les joueurs sélectionnés
                 all_dates = set()
                 for name in selected:
                     if name in elo_history:
@@ -373,13 +372,12 @@ elif page == "📈 Statistiques":
                 fig = go.Figure()
                 for name in selected:
                     if name in elo_history and elo_history[name]:
-                        # Créer un dict date -> elo pour ce joueur
-                        date_to_elo = {
-                            datetime.strptime(e["date"], "%d/%m/%Y %H:%M"): e["elo"]
-                            for e in elo_history[name]
-                        }
-                        x = [d for d in all_dates if d in date_to_elo]
-                        y = [date_to_elo[d] for d in x]
+                        date_elo_pairs = sorted(
+                            [(datetime.strptime(e["date"], "%d/%m/%Y %H:%M"), e["elo"]) for e in elo_history[name]],
+                            key=lambda x: x[0]
+                        )
+                        x = [pair[0].strftime("%d/%m %H:%M") for pair in date_elo_pairs]
+                        y = [pair[1] for pair in date_elo_pairs]
                         fig.add_trace(go.Scatter(
                             x=x,
                             y=y,
@@ -390,12 +388,7 @@ elif page == "📈 Statistiques":
                 fig.update_layout(
                     xaxis_title="Date",
                     yaxis_title="Elo",
-                    xaxis=dict(
-                        tickformat="%d/%m %H:%M",
-                        tickmode="array",
-                        tickvals=sorted(all_dates),
-                        ticktext=[d.strftime("%d/%m %H:%M") for d in sorted(all_dates)],
-                    ),
+                    xaxis=dict(type="category"),
                     plot_bgcolor="rgba(0,0,0,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
                     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
