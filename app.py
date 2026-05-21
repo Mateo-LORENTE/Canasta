@@ -362,20 +362,35 @@ elif page == "📈 Statistiques":
             selected = st.multiselect("Joueurs à afficher", list(players.keys()), default=list(players.keys()))
 
             if selected and elo_history:
+                # Collecter toutes les dates de tous les joueurs sélectionnés
+                all_dates = set()
+                for name in selected:
+                    if name in elo_history:
+                        for e in elo_history[name]:
+                            all_dates.add(datetime.strptime(e["date"], "%d/%m/%Y %H:%M"))
+                all_dates = sorted(all_dates)
+            
                 fig = go.Figure()
                 for name in selected:
                     if name in elo_history and elo_history[name]:
-                        h = elo_history[name]
+                        # Créer un dict date -> elo pour ce joueur
+                        date_to_elo = {
+                            datetime.strptime(e["date"], "%d/%m/%Y %H:%M"): e["elo"]
+                            for e in elo_history[name]
+                        }
+                        x = [d for d in all_dates if d in date_to_elo]
+                        y = [date_to_elo[d] for d in x]
                         fig.add_trace(go.Scatter(
-                            x=[e["date"] for e in h],
-                            y=[e["elo"]  for e in h],
+                            x=x,
+                            y=y,
                             mode="lines+markers",
                             name=name,
                         ))
+            
                 fig.update_layout(
                     xaxis_title="Date",
                     yaxis_title="Elo",
-                    xaxis_tickformat="%d/%m/%Y %H:%M",
+                    xaxis=dict(tickformat="%d/%m/%Y %H:%M"),
                     plot_bgcolor="rgba(0,0,0,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
                     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
