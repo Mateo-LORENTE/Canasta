@@ -515,7 +515,6 @@ elif page == "📈 Statistiques":
             for entry in goat_history[1:-1]:
                 st.markdown(f"- **{entry['Joueur']}** — {entry['Elo record']} Elo — {entry['Durée']}")
             
-            st.markdown("#### 🪦 Historique des WOAT")
             woat_history = []
             tmp_worst = 999999
             tmp_woat = None
