@@ -2,13 +2,31 @@
   "players": {
     "Martin.H": 1001,
     "Paul.D": 992,
-    "Dimitri.C": 957,
+    "Dimitri.C": 945,
     "Mateo.L": 1053,
     "Waël": 1028,
     "Mateo R.": 954,
-    "Kosta ": 1016
+    "Kosta ": 1028
   },
   "history": [
+    {
+      "date": "26/05/2026 20:37",
+      "winners": [
+        "Kosta "
+      ],
+      "losers": [
+        "Dimitri.C"
+      ],
+      "neutrals": [],
+      "deltas": {
+        "Kosta ": 12,
+        "Dimitri.C": -12
+      },
+      "snapshot_before": {
+        "Kosta ": 1016,
+        "Dimitri.C": 957
+      }
+    },
     {
       "date": "23/05/2026 23:23",
       "winners": [
@@ -377,6 +395,10 @@
       {
         "date": "17/05/2026 01:43",
         "elo": 957
+      },
+      {
+        "date": "26/05/2026 20:37",
+        "elo": 945
       }
     ],
     "Mateo.L": [
@@ -457,6 +479,10 @@
       {
         "date": "23/05/2026 23:23",
         "elo": 1016
+      },
+      {
+        "date": "26/05/2026 20:37",
+        "elo": 1028
       }
     ]
   }
