@@ -1,14 +1,36 @@
 {
   "players": {
-    "Martin.H": 988,
+    "Martin.H": 1005,
     "Paul.D": 990,
     "Dimitri.C": 933,
-    "Mateo.L": 1081,
+    "Mateo.L": 1064,
     "Waël": 1028,
     "Mateo R.": 954,
     "Kosta ": 1028
   },
   "history": [
+    {
+      "date": "23/06/2026 19:50",
+      "winners": [
+        "Martin.H"
+      ],
+      "losers": [
+        "Mateo.L"
+      ],
+      "neutrals": [
+        "Paul.D"
+      ],
+      "deltas": {
+        "Martin.H": 17,
+        "Mateo.L": -17,
+        "Paul.D": 0
+      },
+      "snapshot_before": {
+        "Martin.H": 988,
+        "Mateo.L": 1081,
+        "Paul.D": 990
+      }
+    },
     {
       "date": "23/06/2026 16:35",
       "winners": [
@@ -413,6 +435,10 @@
       {
         "date": "23/06/2026 16:35",
         "elo": 988
+      },
+      {
+        "date": "23/06/2026 19:50",
+        "elo": 1005
       }
     ],
     "Paul.D": [
@@ -470,6 +496,10 @@
       },
       {
         "date": "23/06/2026 16:35",
+        "elo": 990
+      },
+      {
+        "date": "23/06/2026 19:50",
         "elo": 990
       }
     ],
@@ -551,6 +581,10 @@
       {
         "date": "18/06/2026 19:54",
         "elo": 1081
+      },
+      {
+        "date": "23/06/2026 19:50",
+        "elo": 1064
       }
     ],
     "Waël": [
