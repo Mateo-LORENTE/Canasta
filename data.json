@@ -1,12 +1,12 @@
 {
   "players": {
-    "Martin.H": 1055,
+    "Martin.H": 990,
     "Paul.D": 1007,
-    "Dimitri.C": 868,
+    "Dimitri.C": 933,
     "Mateo.L": 1062,
     "Waël": 1028,
     "Mateo R.": 954,
-    "Kosta ": 1013,
+    "Kosta ": 1028,
     "Jolan": 1000
   },
   "history": [
@@ -660,7 +660,7 @@
         "elo": 1000
       },
       {
-        "date": "23/05/2026 23:23",
+        "date": "23/05/2026 23:24",
         "elo": 1016
       },
       {
