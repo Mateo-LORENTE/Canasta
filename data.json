@@ -11,115 +11,6 @@
   },
   "history": [
     {
-      "date": "27/06/2026 19:12",
-      "winners": [
-        "Martin.H"
-      ],
-      "losers": [
-        "Dimitri.C"
-      ],
-      "neutrals": [
-        "Waël"
-      ],
-      "deltas": {
-        "Martin.H": 11,
-        "Dimitri.C": -12,
-        "Waël": 0
-      },
-      "snapshot_before": {
-        "Martin.H": 1044,
-        "Dimitri.C": 880,
-        "Waël": 1028
-      }
-    },
-    {
-      "date": "27/06/2026 19:12",
-      "winners": [
-        "Martin.H"
-      ],
-      "losers": [
-        "Dimitri.C"
-      ],
-      "neutrals": [
-        "Waël"
-      ],
-      "deltas": {
-        "Martin.H": 12,
-        "Dimitri.C": -12,
-        "Waël": 0
-      },
-      "snapshot_before": {
-        "Martin.H": 1032,
-        "Dimitri.C": 892,
-        "Waël": 1028
-      }
-    },
-    {
-      "date": "27/06/2026 19:11",
-      "winners": [
-        "Martin.H"
-      ],
-      "losers": [
-        "Dimitri.C"
-      ],
-      "neutrals": [
-        "Waël"
-      ],
-      "deltas": {
-        "Martin.H": 13,
-        "Dimitri.C": -13,
-        "Waël": 0
-      },
-      "snapshot_before": {
-        "Martin.H": 1019,
-        "Dimitri.C": 905,
-        "Waël": 1028
-      }
-    },
-    {
-      "date": "27/06/2026 19:11",
-      "winners": [
-        "Martin.H"
-      ],
-      "losers": [
-        "Dimitri.C"
-      ],
-      "neutrals": [
-        "Waël"
-      ],
-      "deltas": {
-        "Martin.H": 14,
-        "Dimitri.C": -13,
-        "Waël": 0
-      },
-      "snapshot_before": {
-        "Martin.H": 1005,
-        "Dimitri.C": 918,
-        "Waël": 1028
-      }
-    },
-    {
-      "date": "27/06/2026 19:11",
-      "winners": [
-        "Martin.H"
-      ],
-      "losers": [
-        "Dimitri.C",
-        "Kosta "
-      ],
-      "neutrals": [],
-      "deltas": {
-        "Martin.H": 15,
-        "Dimitri.C": -15,
-        "Kosta ": -15
-      },
-      "snapshot_before": {
-        "Martin.H": 990,
-        "Dimitri.C": 933,
-        "Kosta ": 1028
-      }
-    },
-    {
       "date": "23/06/2026 22:25",
       "winners": [
         "Paul.D"
@@ -575,26 +466,6 @@
       {
         "date": "23/06/2026 22:25",
         "elo": 990
-      },
-      {
-        "date": "27/06/2026 19:11",
-        "elo": 1005
-      },
-      {
-        "date": "27/06/2026 19:11",
-        "elo": 1019
-      },
-      {
-        "date": "27/06/2026 19:11",
-        "elo": 1032
-      },
-      {
-        "date": "27/06/2026 19:12",
-        "elo": 1044
-      },
-      {
-        "date": "27/06/2026 19:12",
-        "elo": 1055
       }
     ],
     "Paul.D": [
@@ -695,26 +566,6 @@
       {
         "date": "23/06/2026 16:35",
         "elo": 933
-      },
-      {
-        "date": "27/06/2026 19:11",
-        "elo": 918
-      },
-      {
-        "date": "27/06/2026 19:11",
-        "elo": 905
-      },
-      {
-        "date": "27/06/2026 19:11",
-        "elo": 892
-      },
-      {
-        "date": "27/06/2026 19:12",
-        "elo": 880
-      },
-      {
-        "date": "27/06/2026 19:12",
-        "elo": 868
       }
     ],
     "Mateo.L": [
@@ -783,22 +634,6 @@
       {
         "date": "17/05/2026 01:43",
         "elo": 1028
-      },
-      {
-        "date": "27/06/2026 19:11",
-        "elo": 1028
-      },
-      {
-        "date": "27/06/2026 19:11",
-        "elo": 1028
-      },
-      {
-        "date": "27/06/2026 19:12",
-        "elo": 1028
-      },
-      {
-        "date": "27/06/2026 19:12",
-        "elo": 1028
       }
     ],
     "Mateo R.": [
@@ -831,10 +666,6 @@
       {
         "date": "26/05/2026 20:37",
         "elo": 1028
-      },
-      {
-        "date": "27/06/2026 19:11",
-        "elo": 1013
       }
     ],
     "Jolan": [
