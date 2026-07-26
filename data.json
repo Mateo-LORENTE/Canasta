@@ -1,15 +1,33 @@
 {
   "players": {
     "Martin.H": 962,
-    "Paul.D": 1020,
+    "Paul.D": 1006,
     "Dimitri.C": 949,
-    "Mateo.L": 1045,
+    "Mateo.L": 1059,
     "Waël": 1012,
     "Mateo R.": 954,
     "Kosta ": 1044,
     "Jolan": 1016
   },
   "history": [
+    {
+      "date": "27/07/2026 01:03",
+      "winners": [
+        "Mateo.L"
+      ],
+      "losers": [
+        "Paul.D"
+      ],
+      "neutrals": [],
+      "deltas": {
+        "Mateo.L": 14,
+        "Paul.D": -14
+      },
+      "snapshot_before": {
+        "Mateo.L": 1045,
+        "Paul.D": 1020
+      }
+    },
     {
       "date": "26/07/2026 17:37",
       "winners": [
@@ -648,6 +666,10 @@
       {
         "date": "26/07/2026 17:37",
         "elo": 1020
+      },
+      {
+        "date": "27/07/2026 01:03",
+        "elo": 1006
       }
     ],
     "Dimitri.C": [
@@ -748,6 +770,10 @@
       {
         "date": "26/07/2026 17:37",
         "elo": 1045
+      },
+      {
+        "date": "27/07/2026 01:03",
+        "elo": 1059
       }
     ],
     "Waël": [
