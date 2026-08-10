@@ -9,7 +9,8 @@
     "Kosta ": 1044,
     "Jolan": 1016,
     "Pascaline": 993,
-    "Bastien ": 1000
+    "Bastien ": 1000,
+    "Louis ": 1000
   },
   "history": [
     {
@@ -1155,6 +1156,12 @@
       }
     ],
     "Bastien ": [
+      {
+        "date": "10/08/2026 23:06",
+        "elo": 1000
+      }
+    ],
+    "Louis ": [
       {
         "date": "10/08/2026 23:06",
         "elo": 1000
