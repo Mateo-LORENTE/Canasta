@@ -3,14 +3,32 @@
     "Martin.H": 968,
     "Paul.D": 969,
     "Dimitri.C": 967,
-    "Mateo.L": 1068,
+    "Mateo.L": 1080,
     "Waël": 1012,
     "Mateo R.": 954,
     "Kosta ": 1044,
     "Jolan": 1016,
-    "Pascaline": 1005
+    "Pascaline": 993
   },
   "history": [
+    {
+      "date": "10/08/2026 13:34",
+      "winners": [
+        "Mateo.L"
+      ],
+      "losers": [
+        "Pascaline"
+      ],
+      "neutrals": [],
+      "deltas": {
+        "Mateo.L": 12,
+        "Pascaline": -12
+      },
+      "snapshot_before": {
+        "Mateo.L": 1068,
+        "Pascaline": 1005
+      }
+    },
     {
       "date": "05/08/2026 21:36",
       "winners": [
@@ -1047,6 +1065,10 @@
       {
         "date": "05/08/2026 21:36",
         "elo": 1068
+      },
+      {
+        "date": "10/08/2026 13:34",
+        "elo": 1080
       }
     ],
     "Waël": [
@@ -1125,6 +1147,10 @@
       {
         "date": "05/08/2026 21:36",
         "elo": 1005
+      },
+      {
+        "date": "10/08/2026 13:34",
+        "elo": 993
       }
     ]
   }
