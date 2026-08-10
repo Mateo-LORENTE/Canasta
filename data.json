@@ -8,7 +8,8 @@
     "Mateo R.": 954,
     "Kosta ": 1044,
     "Jolan": 1016,
-    "Pascaline": 993
+    "Pascaline": 993,
+    "Bastien ": 1000
   },
   "history": [
     {
@@ -1151,6 +1152,12 @@
       {
         "date": "10/08/2026 13:34",
         "elo": 993
+      }
+    ],
+    "Bastien ": [
+      {
+        "date": "10/08/2026 23:06",
+        "elo": 1000
       }
     ]
   }
