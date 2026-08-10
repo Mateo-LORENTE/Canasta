@@ -1,18 +1,42 @@
 {
   "players": {
-    "Martin.H": 968,
+    "Martin.H": 985,
     "Paul.D": 969,
     "Dimitri.C": 967,
     "Mateo.L": 1080,
     "Waël": 1012,
     "Mateo R.": 954,
-    "Kosta ": 1044,
+    "Kosta ": 1027,
     "Jolan": 1016,
     "Pascaline": 993,
-    "Bastien ": 1000,
-    "Louis ": 1000
+    "Bastien ": 983,
+    "Louis ": 1017
   },
   "history": [
+    {
+      "date": "10/08/2026 23:09",
+      "winners": [
+        "Martin.H",
+        "Louis "
+      ],
+      "losers": [
+        "Kosta ",
+        "Bastien "
+      ],
+      "neutrals": [],
+      "deltas": {
+        "Martin.H": 17,
+        "Louis ": 17,
+        "Kosta ": -17,
+        "Bastien ": -17
+      },
+      "snapshot_before": {
+        "Martin.H": 968,
+        "Louis ": 1000,
+        "Kosta ": 1044,
+        "Bastien ": 1000
+      }
+    },
     {
       "date": "10/08/2026 13:34",
       "winners": [
@@ -817,6 +841,10 @@
       {
         "date": "01/08/2026 02:11",
         "elo": 968
+      },
+      {
+        "date": "10/08/2026 23:09",
+        "elo": 985
       }
     ],
     "Paul.D": [
@@ -1125,6 +1153,10 @@
       {
         "date": "06/07/2026 17:31",
         "elo": 1044
+      },
+      {
+        "date": "10/08/2026 23:09",
+        "elo": 1027
       }
     ],
     "Jolan": [
@@ -1159,12 +1191,20 @@
       {
         "date": "10/08/2026 23:06",
         "elo": 1000
+      },
+      {
+        "date": "10/08/2026 23:09",
+        "elo": 983
       }
     ],
     "Louis ": [
       {
         "date": "10/08/2026 23:06",
         "elo": 1000
+      },
+      {
+        "date": "10/08/2026 23:09",
+        "elo": 1017
       }
     ]
   }
